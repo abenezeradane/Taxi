@@ -3,6 +3,31 @@ import spacy
 import pandas
 pandas.set_option("display.max_colwidth", None)
 
+
+def extend(list: list, item: str) -> list:
+    """Utility method to safely append an item into a list
+
+    Parameters
+    ----------
+    list: list
+        List containing a set of items
+    item: str
+        String that needs to be appended to the list
+
+    Returns
+    ----------
+    list
+        Original list with the appended item
+    """
+
+    if pandas.isna(item) or (str(item) == 'nan'):
+        return list
+    else
+        list.append(item)
+        return list
+
+
+
 def strip_address(address: str) -> str:
     """Strips the address string of unnecessary symbols and properly formats
         the address into a csv file style format using regex
