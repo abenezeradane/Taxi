@@ -59,3 +59,4 @@ def create_doc_bin(training_data, nlp):
 
 nlp = spacy.blank("en")
 tag_list = ["RecipientTag", "BuildingTag", "BuildingNoTag", "STREET_NAME" "CityTag", "ZipCodeTag", "CountryTag"]
+df_train = pd.read_csv(filepath_or_buffer="../data/us-train-dataset.csv", sep=",", dtype=str)
