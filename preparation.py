@@ -39,8 +39,8 @@ def address_span(address: str = None, component: str = None, label: str = None) 
 
     Returns
     ----------
-    str
-        Properly formatted address string
+    tuple
+        Tuple of the span of the address component and the classification label
     """
 
     if pandas.isna(component) or (str(component) == 'nan'):
