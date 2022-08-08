@@ -71,9 +71,9 @@ def address_span(address: str = None, component: str = None, label: str = None) 
     if pandas.isna(component) or (str(component) == 'nan'):
         pass
     else:
-        span = re.sub("\.", '', component)
-        span = re.sub(r"(?!\s)(-)(?!\s)", " - ", span)
-        span = re.search("\\b(?:" + span + ")\\b", address)
+        component = re.sub("\.", "", component)
+        component = re.sub(r"(?!\s)(-)(?!\s)", " - ", component)
+        span = re.search("\\b(?:" + component + ")\\b", address)
         return (span.start(), span.end(), label)
 
 def create_entity_spans(dataset: pandas.core.frame.DataFrame, tags: list) -> pandas.core.series.Series:
@@ -93,15 +93,17 @@ def create_entity_spans(dataset: pandas.core.frame.DataFrame, tags: list) -> pan
     """
 
     dataset["Address"] = dataset["Address"].apply(lambda address: strip_address(address))
-    #...
+    dataset["Recipient"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['Recipient'], label='RECIPIENT'), axis=1)
+    dataset["Building_Name"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['Building_Name'], label='BUILDING_NAME'), axis=1)
+    dataset["Building_Number"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['Building_Number'], label='BUILDING_NUMBER'), axis=1)
+    dataset["Street"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['Street_Name'], label='STREET'), axis=1)
+    dataset["City"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['City'], label='CITY'), axis=1)
+    dataset["State"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['State'], label='STATE'), axis=1)
+    dataset["Zip_Code"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['Zip_Code'], label='ZIP_CODE'), axis=1)
+    dataset["Country"] = dataset.apply(lambda row: address_span(address=row['Address'], component=row['Country'], label='COUNTRY'), axis=1)
     dataset["EmptySpan"] = dataset.apply(lambda x: [], axis=1)
 
     for tag in tags:
         dataset["EntitySpans"] = dataset.apply(lambda row: extend(row["EmptySpan"], row[tag]), axis=1)
         dataset["EntitySpans"] = dataset[["EntitySpans", "Address"]].apply(lambda entity: (entity[1], entity[0]), axis=1)
     return dataset["EntitySpans"]
-
-tags = ["Recipient", "Building_Name", "Building_Number", "Street_Name", "City", "State", "Zip_Code", "Country"]
-dataset = pandas.read_csv(filepath_or_buffer="./data/datasets/us-train-dataset.csv", sep=",", dtype=str)
-entity_spans = create_entity_spans(dataset.astype(str), tags)
-print(f"Type: {type(entity_spans)}")
