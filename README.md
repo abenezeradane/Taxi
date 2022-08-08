@@ -20,6 +20,17 @@ $ python -m spacy download en_core_web_trf
 
 ### Usage
 ```bash
+# Prepare the data
+$ python preparation.py
+
+# Create training config
+$ python -m spacy init fill-config config\base.cfg config\config.cfg
+
+# Train model using data and config
+$ python -m spacy train config\config.cfg --output models --paths.train data\docbins\trainer.spacy --paths.dev data\docbins\trainer.spacy
+```
+
+```bash
 usage:
 
 ```
