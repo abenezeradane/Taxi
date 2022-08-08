@@ -29,9 +29,20 @@ $ python -m spacy train [CONFIG] --output models --paths.train [TRAINER] --paths
 ```
 
 ### Usage
+#### `preparation.py`
+```bash
+usage: preparation.py [-h] dataset trainer
+
+Prepare training dataset to train spaCy address parser NER model
+
+positional arguments:
+  dataset     Filename of labeled CSV file used to generate training data
+  trainer     Filename of prepared DocBin training data
+```
+
+#### `predict.py`
 ```bash
 usage:
-
 ```
 
 ### Dependencies
