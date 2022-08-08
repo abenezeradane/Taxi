@@ -9,17 +9,15 @@ $ git clone https://github.com/PB020/Taxi.git
 # Change the working directory
 $ cd taxt
 
-# Install requirements
+# Create virtual enviroment
 $ python -m venv .env
 $ .env\Scripts\activate
 $ pip install -U pip setuptools wheel
-$ pip install -U spacy
+
+# Install requirements
 $ pip install -r requirements.txt
 $ python -m spacy download en_core_web_trf
-```
 
-### Usage
-```bash
 # Prepare the data
 $ python preparation.py
 
@@ -30,6 +28,7 @@ $ python -m spacy init fill-config config\base.cfg config\config.cfg
 $ python -m spacy train config\config.cfg --output models --paths.train data\docbins\trainer.spacy --paths.dev data\docbins\trainer.spacy
 ```
 
+### Usage
 ```bash
 usage:
 
