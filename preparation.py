@@ -136,3 +136,18 @@ def create_docbin(data: list, NLP: spacy.Language) -> spacy.tokens._serialize.Do
         doc.ents = ents
         docbin.add(doc)
     return docbin
+
+# Load blank model and define entity tag list
+NLP = spacy.blank("en")
+TAGS = ["Recipient", "Building_Name", "Building_Number", "Street", "City", "Zip_Code", "Country"]
+
+# Read the training dataset into pandas
+DATASET = pandas.read_csv(filepath_or_buffer="./data/datasets/us-train-dataset.csv", sep=",", dtype=str)
+
+# Get entity spans
+SPANS = create_entity_spans(DATASET.astype(str), TAGS)
+TRAINING_DATA = SPANS.tolist()
+
+# Get and persist DocBin to disk
+DOCBIN = create_docbin(TRAINING_DATA, NLP)
+DOCBIN.to_disk("./data/docbins/trainer.spacy")
