@@ -167,7 +167,7 @@ def main() -> None:
 
     # Load blank model and add entity ruler
     NLP = spacy.blank("en")
-    RULER = NLP.add_pipe("entity_ruler")
+    RULER = NLP.add_pipe("entity_ruler", config={"validate": True, "overwrite_ents": True},)
     PATTERNS = [
         {"label":"STATE","pattern":[{"LOWER":"alabama"}]},
         {"label":"STATE","pattern":[{"LOWER":"alaska"}]},
