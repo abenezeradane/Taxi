@@ -24,7 +24,7 @@ $ python preparation.py [DATASET] [TRAINER]
 $ python -m spacy init fill-config config\base.cfg [CONFIG]
 
 # Train model using data and config
-$ python -m spacy train [CONFIG] --output models --paths.train [TRAINER] --paths.dev [TRAINER]
+$ python -m spacy train [CONFIG] --output models --paths.train [TRAINER] --paths.dev [TRAINER] --training.eval_frequency [FREQUENCY] --training.max_steps [STEPS]
 ```
 
 ### Usage
