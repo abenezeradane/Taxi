@@ -147,6 +147,9 @@ def create_docbin(data: list, NLP: spacy.Language) -> spacy.tokens._serialize.Do
         docbin.add(doc)
     return docbin
 
+ERASE_LINE = '\x1b[2K'
+CURSOR_UP_ONE = '\x1b[1A'
+
 def main() -> None:
     """
     Main method, used to parse command line arguments then runs
@@ -167,17 +170,21 @@ def main() -> None:
     TAGS = ["Recipient", "Building_Name", "Building_Number", "Street", "City", "Zip_Code", "Country"]
 
     # Read the training dataset into pandas
-    print("\033[92m✔ Fetched dataset\033[0m")
+    print("\033[92m✔ Fetching dataset\033[0m")
     DATASET = pandas.read_csv(filepath_or_buffer=args.dataset, sep=",", dtype=str)
+    print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+    print("\033[92m✔ Fetched dataset\033[0m")
 
     # Get entity spans
     SPANS = create_entity_spans(DATASET.astype(str), TAGS)
     TRAINING_DATA = SPANS.tolist()
 
     # Get and persist DocBin to disk
-    print("\033[92m✔ Created spaCy training data\033[0m")
+    print("\033[92m✔ Creating spaCy training data\033[0m")
     DOCBIN = create_docbin(TRAINING_DATA, NLP)
     DOCBIN.to_disk(args.trainer)
+    print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+    print("\033[92m✔ Created spaCy training data\033[0m")
     print("\033[97mReady to start training models!\033[0m")
 
 if __name__ == '__main__':

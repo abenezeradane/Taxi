@@ -19,13 +19,13 @@ $ pip install -r requirements.txt
 $ python -m spacy download en_core_web_trf
 
 # Prepare the data
-$ python preparation.py
+$ python preparation.py [DATASET] [OUTPUT]
 
 # Create training config
-$ python -m spacy init fill-config config\base.cfg config\config.cfg
+$ python -m spacy init fill-config config\base.cfg [CONFIG]
 
 # Train model using data and config
-$ python -m spacy train config\config.cfg --output models --paths.train data\docbins\trainer.spacy --paths.dev data\docbins\trainer.spacy
+$ python -m spacy train [CONFIG] --output models --paths.train [OUTPUT] --paths.dev [OUTPUT]
 ```
 
 ### Usage
