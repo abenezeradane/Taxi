@@ -1,7 +1,12 @@
+import os
 import re
+import sys
 import spacy
 import pandas
-nlp = spacy.load("en_core_web_trf")
+import argparse
+from colorama import init
+
+# Set pandas option
 pandas.set_option("display.max_colwidth", None)
 
 
@@ -133,7 +138,7 @@ def create_docbin(data: list, NLP: spacy.Language) -> spacy.tokens._serialize.Do
 
     docbin = spacy.tokens.DocBin()
     for text, annotations in data:
-        doc = nlp(text)
+        doc = NLP(text)
         ents = []
         for start, end, label in annotations:
             span = doc.char_span(start, end, label=label)
@@ -142,17 +147,39 @@ def create_docbin(data: list, NLP: spacy.Language) -> spacy.tokens._serialize.Do
         docbin.add(doc)
     return docbin
 
-# Load blank model and define entity tag list
-NLP = spacy.blank("en")
-TAGS = ["Recipient", "Building_Name", "Building_Number", "Street", "City", "Zip_Code", "Country"]
+def main() -> None:
+    """
+    Main method, used to parse command line arguments then runs
+    training data preparation script
+    """
 
-# Read the training dataset into pandas
-DATASET = pandas.read_csv(filepath_or_buffer="./data/datasets/us-train-dataset.csv", sep=",", dtype=str)
+    parser = argparse.ArgumentParser(description="Prepare training dataset to train spaCy address parser NER model")
+    parser.add_argument("dataset", action="store", help="Filename of labeled CSV file used to generate training data")
+    parser.add_argument("trainer", action="store", help="Filename of prepared DocBin training data")
+    args = parser.parse_args()
 
-# Get entity spans
-SPANS = create_entity_spans(DATASET.astype(str), TAGS)
-TRAINING_DATA = SPANS.tolist()
+    if (args.dataset == None) or (not os.path.exists(args.dataset)):
+        print("\033[91m✘ Dataset not provided\033[0m")
+        sys.exit()
 
-# Get and persist DocBin to disk
-DOCBIN = create_docbin(TRAINING_DATA, NLP)
-DOCBIN.to_disk("./data/docbins/trainer.spacy")
+    # Load blank model and define entity tag list
+    NLP = spacy.blank("en")
+    TAGS = ["Recipient", "Building_Name", "Building_Number", "Street", "City", "Zip_Code", "Country"]
+
+    # Read the training dataset into pandas
+    print("\033[92m✔ Fetched dataset\033[0m")
+    DATASET = pandas.read_csv(filepath_or_buffer=args.dataset, sep=",", dtype=str)
+
+    # Get entity spans
+    SPANS = create_entity_spans(DATASET.astype(str), TAGS)
+    TRAINING_DATA = SPANS.tolist()
+
+    # Get and persist DocBin to disk
+    print("\033[92m✔ Created spaCy training data\033[0m")
+    DOCBIN = create_docbin(TRAINING_DATA, NLP)
+    DOCBIN.to_disk(args.trainer)
+    print("\033[97mReady to start training models!\033[0m")
+
+if __name__ == '__main__':
+    init()
+    main()
