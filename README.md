@@ -9,8 +9,13 @@ $ git clone https://github.com/PB020/Taxi.git
 # Change the working directory
 $ cd taxt
 
-# Install the requirements
+# Install requirements
+$ python -m venv .env
+$ .env\Scripts\activate
+$ pip install -U pip setuptools wheel
+$ pip install -U spacy
 $ pip install -r requirements.txt
+$ python -m spacy download en_core_web_trf
 ```
 
 ### Usage

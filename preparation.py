@@ -1,6 +1,7 @@
 import re
 import spacy
 import pandas
+nlp = spacy.load("en_core_web_trf")
 pandas.set_option("display.max_colwidth", None)
 
 
@@ -107,3 +108,31 @@ def create_entity_spans(dataset: pandas.core.frame.DataFrame, tags: list) -> pan
         dataset["EntitySpans"] = dataset.apply(lambda row: extend(row["EmptySpan"], row[tag]), axis=1)
         dataset["EntitySpans"] = dataset[["EntitySpans", "Address"]].apply(lambda entity: (entity[1], entity[0]), axis=1)
     return dataset["EntitySpans"]
+
+def create_docbin(data: list, NLP: spacy.Language) -> spacy.tokens._serialize.DocBin:
+    """Return a DocBin (ie. serialization of information) used by spaCy
+       as a training set, using training data and an empty spaCy English model
+
+    Parameters
+    ----------
+    data: list
+        List containing training data
+    NLP: spacy.Language
+        An empty English spaCy model
+
+    Returns
+    ----------
+    spacy.tokens._serialize.DocBin
+        DocBin object for building a training set
+    """
+
+    docbin = spacy.tokens.DocBin()
+    for text, annotations in data:
+        doc = nlp(text)
+        ents = []
+        for start, end, label in annotations:
+            span = doc.char_span(start, end, label=label)
+            ents.append(span)
+        doc.ents = ents
+        docbin.add(doc)
+    return docbin
