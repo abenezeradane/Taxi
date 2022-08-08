@@ -35,5 +35,5 @@ usage:
 ```
 
 ### Dependencies
-[spaCy](https://spacy.io)\
-[pandas](https://pandas.pydata.org)
+- [spaCy](https://spacy.io)
+- [pandas](https://pandas.pydata.org)
