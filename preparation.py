@@ -6,7 +6,8 @@ pandas.set_option("display.max_colwidth", None)
 
 
 def extend(list: list, item: str) -> list:
-    """Utility method to safely append an item into a list
+    """
+    Utility method to safely append an item into a list
 
     Parameters
     ----------
@@ -30,8 +31,9 @@ def extend(list: list, item: str) -> list:
 
 
 def strip_address(address: str) -> str:
-    """Strips the address string of unnecessary symbols and properly formats
-        the address into a csv file style format using regex
+    """
+    Strips the address string of unnecessary symbols and properly formats
+    the address into a csv file style format using regex
 
     Parameters
     ----------
@@ -51,8 +53,9 @@ def strip_address(address: str) -> str:
     return stripped
 
 def address_span(address: str = None, component: str = None, label: str = None) -> tuple:
-    """Return a tuple containing the span of the address component in the
-       address string and the classification label of the component
+    """
+    Return a tuple containing the span of the address component in the
+    address string and the classification label of the component
 
     Parameters
     ----------
@@ -78,7 +81,8 @@ def address_span(address: str = None, component: str = None, label: str = None) 
         return (span.start(), span.end(), label)
 
 def create_entity_spans(dataset: pandas.core.frame.DataFrame, tags: list) -> pandas.core.series.Series:
-    """Create a pandas Series with entity spans for the training dataset
+    """
+    Create a pandas Series with entity spans for the training dataset
 
     Parameters
     ----------
@@ -110,8 +114,9 @@ def create_entity_spans(dataset: pandas.core.frame.DataFrame, tags: list) -> pan
     return dataset["EntitySpans"]
 
 def create_docbin(data: list, NLP: spacy.Language) -> spacy.tokens._serialize.DocBin:
-    """Return a DocBin (ie. serialization of information) used by spaCy
-       as a training set, using training data and an empty spaCy English model
+    """
+    Return a DocBin (ie. serialization of information) used by spaCy
+    as a training set, using training data and an empty spaCy English model
 
     Parameters
     ----------
