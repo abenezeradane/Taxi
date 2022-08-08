@@ -16,7 +16,6 @@ $ pip install -U pip setuptools wheel
 
 # Install requirements
 $ pip install -r requirements.txt
-$ python -m spacy download en_core_web_trf
 
 # Prepare the data
 $ python preparation.py [DATASET] [TRAINER]
