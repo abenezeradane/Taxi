@@ -18,13 +18,13 @@ $ pip install -U pip setuptools wheel
 $ pip install -r requirements.txt
 
 # Prepare the data
-$ python preparation.py [DATASET] [TRAINER]
+$ python preparation.py data\datasets\us-train-dataset.csv [TRAINER]
 
 # Create training config
-$ python -m spacy init fill-config config\base.cfg [CONFIG]
+$ python -m spacy init fill-config config\base.cfg config\config.cfg
 
 # Train model using data and config
-$ python -m spacy train [CONFIG] --output models --paths.train [TRAINER] --paths.dev [TRAINER] --training.eval_frequency [FREQUENCY] --training.max_steps [STEPS]
+$ python -m spacy train [CONFIG] --output models --paths.train [TRAINER] --paths.dev [TRAINER]
 ```
 
 ### Usage
