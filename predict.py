@@ -85,6 +85,12 @@ def main() -> None:
     if args.folder == "FILE":
         FILE = open(args.data, "r")
         CONTENT = FILE.readlines()
+    else:
+        FILES = next(os.walk(args.data), (None, None, []))[2]
+        for file in FILES:
+            PATH = f"{args.data}\{file}"
+            DATA = open(PATH, "r")
+            CONTENT += DATA.readlines()
 
     # Checking predictions for the NER model
     for ADDRESS in CONTENT:

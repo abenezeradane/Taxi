@@ -54,6 +54,15 @@ optional arguments:
   --folder FOLDER  Option to recursively parse data from all files in a given directory
 ```
 
+#### Example Usage
+```bash
+# Single File Usage
+$ python predict.py "models\model-best" "data\tests\us-test-dataset.csv"
+
+# Directory Usage
+$ python predict.py "models\model-best" "data\tests"
+```
+
 ### Dependencies
 - [spaCy](https://spacy.io)
 - [pandas](https://pandas.pydata.org)
