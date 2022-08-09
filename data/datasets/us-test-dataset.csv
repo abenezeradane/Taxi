@@ -1,25 +1,30 @@
-Address,Building_Name,Building_Number,City,Recipient,Street_Name,Zip_Code,State,Country
-"223 NW STATE STRE, DOVER, DE 19001, United States",,223,DOVER,,NW STATE STRE,19001,DE,United States
-"216 LIBERTY MT ROAD, CHATTANOOGA, TN 37405, United States",,216,CHATTANOOGA,,LIBERTY MT ROAD,37405,TN,United States
-"HIGHWAY 11-E, RUSSELLVILLE, TN 00000, United States",,,RUSSELLVILLE,,HIGHWAY 11-E,00000,TN,United States
-"7913 HWY 51 N, MILLINGTON, TN 38053, United States",,7913,MILLINGTON,,HWY 51 N,38053,TN,United States
-"PO BOX 481, BALDWIN, GA, 30511-0484,, United States",,,BALDWIN,,,30511-0484,GA,United States
-"PO BOX 457, NORTONVILLE, KS 660600452,United States",,,NORTONVILLE,,,660600452,KS,United States
-"GULLY RD PO BOX 62, SO POMFRET, VT, 05067,, United States",,,,,GULLY RD,05067,VT,United States
-"721 JAMES MCSHANE BLVD PO BOX 129, SALISBURY, NC 28145-1127, United States",,721,SALISBURY,,JAMES MCSHANE BLVD,28145-1127,NC,United States
-"C/O ABC CORP SYSTEM, KNOXVILLE, TN 37902, United States",,,KNOXVILLE,C/O ABC CORP SYSTEM,,37902,TN,United States
-"C/O J MCKEEN RTE, COLUMBIA, TN 00000, United States",,,COLUMBIA,C/O J MCKEEN RTE,,00000,TN,United States
-"C/O One Framingham Centre 5 EDGELL AVE.,FRAMINGHAM,,MA,USA",,5,FRAMINGHAM,C/O One Framingham Centre,EDGELL AVE,,MA,USA
-"C/O PAT S SPAGHETTI, LEXINGTON, TN 38351, United States",,,LEXINGTON,C/O PAT S SPAGHETTI,,38351,TN,United States
-"The Baldwin Building, 3131 West Central Avenue,,,43617-1087,,US",,3131,,,West Central Avenue,43617-1087,,US
-"6501 W 69th St,SIOUX FALLS,SD,57108-8148,,US",,6501,SIOUX FALLS,,W 69th St,57108-8148,SD,US
-"212 NE San Martin St,PORTLAND,OR,97212-3948,,US",,212,PORTLAND,,NE San Martin St,97212-3948,OR,US
-"7293 SE 8th St,POMPANO BEACH,FL,33062-6746,,US",,7293,POMPANO BEACH,,SE 8th St,33062-6746,FL,US
-"3146 Barter St,BEAUMONT,TX,77707-3514,,US",,3146,BEAUMONT,,Barter St,77707-3514,TX,US
-"211 Henry Bldg,PORTLAND,OR,,,US",Henry Bldg,,PORTLAND,,,,OR,US
-"881 Central Capital of Texas Highway, Bldg 56, Ste 4200,,,78759,,US",Bldg 56,881,,,Central Capital of Texas Highway,78759,,US
-"155 Epps Bridge Pkwy Bldg 100 Ste 201,ATHENS,GA,30606-3347,,US",Bldg 100,155,ATHENS,,Epps Bridge Pkwy,30606-3347,GA,US
-"Haliday Bldg 3 Golly Ln Dept RB08,MIDDLE ISLAND,NY,11953-0102,,US",Haliday Bldg,3,MIDDLE ISLAND,,Golly Ln,11953-0102,NY,US
-"6319 Sta Point Ct # J,WINTER PARK,FL,32792-8214,,US",,6319,WINTER PARK,,Sta Point Ct,32792-8214,FL,US
-"2376 Park View Ct Ste 240,OXNARD,CA,93036-5458,,US",,2376,OXNARD,,Park View Ct,93036-5458,CA,US
-"105 Gretel Ct E Ste 600,ROSWELL,GA,30076-4853,,US",,105,ROSWELL,,Gretel Ct E,30076-4853,GA,US
+9731 Glenholme Lane Torrance, CA 90505, USA
+211 Tanglewood Road Avon, IN 46123, USA
+475 Lake Ave. Nutley, NJ 07110, USA
+8911 West Halifax Drive Morrisville, PA 19067, USA
+8114 W. Proctor Street Randallstown, MD 21133, USA
+8497 Brown St. Freehold, NJ 07728, USA
+7090 Cooper Avenue Attleboro, MA 02703, USA
+775 Vine Lane Long Branch, NJ 07740, USA
+21 Paris Hill Road Lititz, PA 17543, USA
+9323 Hillside Drive Zeeland, MI 49464, USA
+905 E. College St. Anderson, SC 29621, USA
+495 Bellevue Court Antioch, TN 37013, USA
+8446 Vernon Lane Lawrence, MA 01841, USA
+9508 East Ridgeview Drive Glastonbury, CT 06033, USA
+381 East Valley Farms Street Lawrence Township, NJ 08648, USA
+6 Prairie Street Hudsonville, MI 49426, USA
+7626 Linden St. Jackson, NJ 08527, USA
+745 West Pheasant St. Elmhurst, NY 11373, USA
+151 North Longfellow Street Virginia Beach, VA 23451, USA
+257 53rd Rd. Dearborn Heights, MI 48127, USA
+7326 East John Road Westland, MI 48185, USA
+883 Valley St. Northville, MI 48167, USA
+7005 Tarkiln Hill St. Mount Prospect, IL 60056, USA
+44 Tallwood Rd. Rockford, MI 49341, USA
+56 Arrowhead St. Pewaukee, WI 53072, USA
+130 W BOSE ST STE 100, PARK RIDGE, IL, 60068, USA
+8311 MCDONALD RD, HOUSTON, TX, 77053-4821, USA
+PO Box 317, 4100 Hwy 20 E Ste 403, NICEVILLE, FL, 32578-5037, USA
+C/O Elon Musk Innovations Inc, 1548 E Florida Avenue, Suite 209, TAMPA, FL, 33613, USA
+Seven Edgeway Plaza, C/O Mac Dermott Inc, OAKBROOK TERRACE, IL, 60181, USA

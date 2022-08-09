@@ -1,8 +1,55 @@
 import os
+import re
 import sys
 import spacy
 import argparse
 from colorama import init
+
+def strip_address(address: str) -> str:
+    """
+    Strips the address string of unnecessary symbols and properly formats
+    the address into a csv file style format using regex
+
+    Parameters
+    ----------
+    address: str
+        String containing the address
+
+    Returns
+    ----------
+    str
+        Properly formatted address string
+    """
+
+    stripped = re.sub(r"(,)(?!\s)", ", ", address)
+    stripped = re.sub(r"(\\n)", ", ", stripped)
+    stripped = re.sub(r"(?!\s)(-)(?!\s)", " - ", stripped)
+    stripped = re.sub(r"\.", "", stripped)
+    return stripped
+
+def parse_address(nlp: spacy.Language, address: str) -> list:
+    """
+    Parses the passed address string and returns the address components
+    as a list of tuples
+
+    Parameters
+    ----------
+    address: str
+        String containing the address
+
+    Returns
+    ----------
+    List
+        List of address components
+    """
+
+    doc = nlp(strip_address(address))
+    entities = [(entity.text, entity.label_) for entity in doc.ents]
+    print(f"\033[94mAddress:\033[0m \033[97m\"{address[0:-1]}\"\033[0m")
+    for entity in entities:
+        print(f"  \033[94m{entity[1]}:\033[0m \033[97m\"{entity[0]}\"\033[0m")
+    print("")
+    return entities
 
 ERASE_LINE = '\x1b[2K'
 CURSOR_UP_ONE = '\x1b[1A'
@@ -36,16 +83,12 @@ def main() -> None:
     # Load input data
     CONTENT = []
     if args.folder == "FILE":
-        with open(args.data, "r") as FILE:
-            CONTENT.append(FILE.readline())
+        FILE = open(args.data, "r")
+        CONTENT = FILE.readlines()
 
     # Checking predictions for the NER model
     for ADDRESS in CONTENT:
-        DOC = NLP(ADDRESS)
-        ENTITYLIST = [(ENTITY.text, ENTITY.label_) for ENTITY in DOC.ents]
-        print("Address string -> "+ ADDRESS)
-        print("Parsed address -> "+str(ENTITYLIST))
-        print("******")
+        parse_address(NLP, ADDRESS)
 
 if __name__ == '__main__':
     init()
