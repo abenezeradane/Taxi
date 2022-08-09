@@ -41,7 +41,17 @@ positional arguments:
 
 #### `predict.py`
 ```bash
-usage:
+usage: predict.py [-h] [--folder FOLDER] model data
+
+Use trained spaCy NER model to parse addresses from a given file
+
+positional arguments:
+  model            Path to the folder containing the trained model
+  data             Path to input data that needs to be parsed
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --folder FOLDER  Option to recursively parse data from all files in a given directory
 ```
 
 ### Dependencies
