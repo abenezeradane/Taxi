@@ -165,9 +165,8 @@ def main() -> None:
         print("\033[91m✘ Dataset not provided\033[0m")
         sys.exit()
 
-    # Load blank model and entity ruler
+    # Load blank model
     NLP = spacy.blank("en")
-    RULER = NLP.add_pipe("entity_ruler").from_disk("./data/rules/entity_ruler.jsonl")
 
     # Read the training dataset into pandas
     print("\033[92m✔ Fetching dataset\033[0m")
@@ -176,7 +175,7 @@ def main() -> None:
     print("\033[92m✔ Fetched dataset\033[0m")
 
     # Define tags and get entity spans
-    TAGS = ["Recipient", "Building_Name", "Building_Number", "Street", "City", "Zip_Code", "Country"]
+    TAGS = ["Recipient", "Building_Name", "Building_Number", "Street", "City", "State", "Zip_Code", "Country"]
     SPANS = create_entity_spans(DATASET.astype(str), TAGS)
     TRAINING_DATA = SPANS.tolist()
 
