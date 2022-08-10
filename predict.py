@@ -27,15 +27,19 @@ def strip_address(address: str) -> str:
     stripped = re.sub(r"\.", "", stripped)
     return stripped
 
-def parse_address(nlp: spacy.Language, address: str) -> list:
+def parse_address(nlp: spacy.Language, address: str, output: str) -> list:
     """
     Parses the passed address string and returns the address components
     as a list of tuples
 
     Parameters
     ----------
+    NLP: spacy.Language
+        An empty English spaCy model
     address: str
         String containing the address
+    output: str
+        String containing the filename to save data output
 
     Returns
     ----------
@@ -43,12 +47,19 @@ def parse_address(nlp: spacy.Language, address: str) -> list:
         List of address components
     """
 
+    output = open(output, "a+")
     doc = nlp(strip_address(address))
     entities = [(entity.text, entity.label_) for entity in doc.ents]
-    print(f"\033[94mAddress:\033[0m \033[97m\"{address[0:-1]}\"\033[0m")
+
+    output.write(f"Address: {address[0:-1]}\n")
+    print(f"\033[94mAddress:\033[0m \033[97m{address[0:-1]}\033[0m")
     for entity in entities:
-        print(f"  \033[94m{entity[1]}:\033[0m \033[97m\"{entity[0]}\"\033[0m")
+        output.write(f"  {entity[1]}: {entity[0]}\n")
+        print(f"  \033[94m{entity[1]}:\033[0m \033[97m{entity[0]}\033[0m")
+    output.write("\n")
     print("")
+
+    output.close()
     return entities
 
 ERASE_LINE = '\x1b[2K'
@@ -64,6 +75,7 @@ def main() -> None:
     parser.add_argument("model", action="store", help="Path to the folder containing the trained model")
     parser.add_argument("--folder", action="store", help="Option to recursively parse data from all files in a given directory")
     parser.add_argument("data", action="store", help="Path to input data that needs to be parsed")
+    parser.add_argument("--output", action="store", help="Filename to save parsed data")
     args = parser.parse_args()
 
     if (args.model == None) or (not os.path.exists(args.model)):
@@ -73,6 +85,9 @@ def main() -> None:
     if (args.data == None) or (not os.path.exists(args.data)):
         print("\033[91m✘ Input not provided\033[0m")
         sys.exit()
+
+    if args.output == None:
+        args.output = "./output.txt"
 
     if args.folder == None:
         args.folder = "FILE"
@@ -94,7 +109,7 @@ def main() -> None:
 
     # Checking predictions for the NER model
     for ADDRESS in CONTENT:
-        parse_address(NLP, ADDRESS)
+        parse_address(NLP, ADDRESS, args.output)
 
 if __name__ == '__main__':
     init()
