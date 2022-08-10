@@ -7,7 +7,7 @@ An address parser implemented in Python using a trained spaCy NER model
 $ git clone https://github.com/PB020/Taxi.git
 
 # Change the working directory
-$ cd taxt
+$ cd taxi
 
 # Create virtual enviroment
 $ python -m venv .env
